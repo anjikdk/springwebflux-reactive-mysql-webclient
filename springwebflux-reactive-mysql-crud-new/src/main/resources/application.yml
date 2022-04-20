@@ -1,0 +1,14 @@
+spring:
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/springboot
+    username: root
+    password: root
+    initialization-mode: always
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: true
+
+server:
+  port: 9292
