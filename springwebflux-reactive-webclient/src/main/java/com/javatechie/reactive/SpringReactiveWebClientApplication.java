@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
-public class SpringReactiveMySQLCrudApplication {
+public class SpringReactiveWebClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringReactiveMySQLCrudApplication.class, args);
+		SpringApplication.run(SpringReactiveWebClientApplication.class, args);
 	}
 
 	@Bean

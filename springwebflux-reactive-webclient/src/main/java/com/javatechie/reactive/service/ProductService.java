@@ -12,34 +12,51 @@ import reactor.core.publisher.Mono;
 @Service
 public class ProductService {
 
-    @Autowired
-    private WebClient myWebClient;
+	@Autowired
+	private WebClient myWebClient;
 
 
-    public Flux<ProductDto> getProducts(){
-    	
-    	return myWebClient.get()
-    			.uri("http://localhost:9292/products")
-    			.retrieve()
-    			.bodyToFlux(ProductDto.class);
-    	
-    	
-    }
+	public Flux<ProductDto> getProducts(){
 
-    public Mono<ProductDto> getProduct(int id){
-       
-    	return myWebClient.get()
-    			.uri("http://localhost:9292/products/{id}", id)
-    			.retrieve()
-    			.bodyToMono(ProductDto.class);
-    }
+		return myWebClient.get()
+				.uri("http://localhost:9292/products")
+				.retrieve()
+				.bodyToFlux(ProductDto.class);
 
-    public Mono<ProductDto> saveProduct(ProductDto productDtoMono){
-       
-    	return myWebClient.post()
-    			.uri("http://localhost:9292/products")
-    			.body(Mono.just(productDtoMono), ProductDto.class)
-    			.retrieve()
-    			.bodyToMono(ProductDto.class);
-    }
+
+	}
+
+	public Mono<ProductDto> getProduct(int id){
+
+		return myWebClient.get()
+				.uri("http://localhost:9292/products/{id}", id)
+				.retrieve()
+				.bodyToMono(ProductDto.class);
+	}
+
+	public Mono<ProductDto> saveProduct(ProductDto productDtoMono){
+
+		return myWebClient.post()
+				.uri("http://localhost:9292/products")
+				.body(Mono.just(productDtoMono), ProductDto.class)
+				.retrieve()
+				.bodyToMono(ProductDto.class);
+	}
+
+	public Mono<ProductDto> updateProduct(ProductDto productDtoMono, int id){
+
+		return myWebClient.put()
+				.uri("http://localhost:9292/products/update/{id}", id)
+				.body(Mono.just(productDtoMono), ProductDto.class)
+				.retrieve()
+				.bodyToMono(ProductDto.class);
+	}
+
+	public Mono<ProductDto> deleteProduct(int id){
+
+		return myWebClient.delete()
+				.uri("http://localhost:9292/products/delete/{id}", id)
+				.retrieve()
+				.bodyToMono(ProductDto.class);
+	}
 }

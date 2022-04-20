@@ -29,4 +29,17 @@ public class ProductController {
         System.out.println("controller method called ...");
         return service.saveProduct(productDtoMono);
     }
+    
+    @PutMapping("/update/{id}")
+    public Mono<ProductDto> updateProduct(@RequestBody ProductDto productDtoMono, @PathVariable("id") int id){
+        System.out.println("controller method called ...");
+        return service.updateProduct(productDtoMono, id);
+    }
+    
+    @DeleteMapping("/delete/{id}")
+    public Mono<ProductDto> deleteProduct(@PathVariable("id") int id){
+        System.out.println("controller method called ...");
+        return service.deleteProduct(id);
+    }
+    
 }
